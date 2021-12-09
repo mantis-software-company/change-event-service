@@ -1,9 +1,9 @@
 import json
 import pika, sys, os
-from config import AMQP_CONFIG
+from ..config import AMQP_CONFIG
 
 
-from modules.rest.business import pika_create_change_event
+from ..modules.rest.business import pika_create_change_event
 
 def main():
 

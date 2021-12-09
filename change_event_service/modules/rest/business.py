@@ -5,9 +5,9 @@ from flask_sqlalchemy import Pagination
 from sqlalchemy import and_
 from sqlalchemy.exc import NoResultFound
 from http import HTTPStatus
-from database import db
-from modules.rest.models import ChangeEventModel
-from modules.rest.utils import ResponseObject, PaginationObject
+from ...database import db
+from ...modules.rest.models import ChangeEventModel
+from ...modules.rest.utils import ResponseObject, PaginationObject
 
 def pika_create_change_event(data):
     if(hasattr(data,'user_id') == False):

@@ -1,5 +1,5 @@
 import os
-from database import db
+from ...database import db
 
 
 class LogModel:

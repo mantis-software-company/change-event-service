@@ -27,4 +27,4 @@ Open project in PyCharm, set environment variables and run `app.py`
 * POSTGRES_PASS= Set password of database
 * POSTGRES_DB= Set db name of database
 
-Other application settings in [config.py](change_event_query/config.py)
+Other application settings in [config.py](change_event_service/config.py)

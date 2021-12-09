@@ -2,10 +2,10 @@ from http import HTTPStatus
 
 from flask.views import MethodView
 from flask_smorest import Blueprint
-from modules.rest.schemas import ChangeEventSchema, ChangeEventResponse, \
+from ...modules.rest.schemas import ChangeEventSchema, ChangeEventResponse, \
     BaseResponse, \
     ChangeEventsResponse
-from modules.rest.business import create_change_event, fetch_change_event, \
+from ...modules.rest.business import create_change_event, fetch_change_event, \
     delete_change_event, fetch_change_event_field_name, fetch_change_event_tag, \
     search_change_event_with_fieldName_tagName_userName_eventTime
 
