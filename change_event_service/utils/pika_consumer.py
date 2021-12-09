@@ -19,10 +19,14 @@ def main():
             exchange=AMQP_CONFIG['AMQP_EXCHANGE'], queue=AMQP_CONFIG['AMQP_QUEUE'], routing_key=AMQP_CONFIG['AMQP_ROUTING_KEY'])
 
     def callback(ch, method, properties, body):
-        print(" [x] Received %r" % body)
-        data = body.decode('utf-8')
-        data = json.loads(data)
-        pika_create_change_event(data=data)
+        try:
+            print(" [x] Received %r" % body)
+            data = body.decode('utf-8')
+            data = json.loads(data)
+            pika_create_change_event(data=data)
+            ch.basic_ack(delivery_tag=method.delivery_tag)
+        except Exception as e:
+            print(e)
 
     channel.basic_consume(queue=AMQP_CONFIG['AMQP_QUEUE'], on_message_callback=callback, auto_ack=False)
 
