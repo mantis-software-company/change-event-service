@@ -59,6 +59,3 @@ initialize_app(app)
 def main():
     log.info(f'>>>>> Starting server... <<<<<')
     app.run(debug=True)
-
-def get_app():
-    return app
