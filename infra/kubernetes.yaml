@@ -38,9 +38,9 @@ spec:
         - name: AMQP_HOST
           value: "mq.host"
         - name: AMQP_USER
-          value: your_namespace
+          value: user_name
         - name: AMQP_PASSWORD
-          value: your_namespace
+          value: your_password
         #- name: REPOSITORY_URL
         #  value: "your_pypi_repository"
         - name: REQUIREMENTS_PACKAGES
