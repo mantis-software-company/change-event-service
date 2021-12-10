@@ -54,8 +54,11 @@ def initialize_app(flask_app):
     Api.DEFAULT_ERROR_RESPONSE_NAME = None
     api.register_blueprint(change_event)
 
+initialize_app(app)
 
 def main():
-    initialize_app(app)
     log.info(f'>>>>> Starting server... <<<<<')
     app.run(debug=True)
+
+def get_app():
+    return app

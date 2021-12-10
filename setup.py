@@ -2,9 +2,9 @@ import setuptools
 
 setuptools.setup(
     name="change-event-service",
-    version="1.0.0-5",
-    author="Ramazan Çetin",
-    author_email="lramazancetinl@gmail.com",
+    version="1.0.0-6",
+    author="Ramazan Çetin, Fatih Mehmet ARSLAN",
+    author_email="lramazancetinl@gmail.com, contact@fmarslan.com",
     contributors=[
         ['Furkan Kalkan', 'furkankalkan@mantis.com.tr', 'maintainer'],
         ['Derya Pelin Deniz', 'deryapelindenizzz@gmail.com', 'maintainer'],
