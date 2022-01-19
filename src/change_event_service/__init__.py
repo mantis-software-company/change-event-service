@@ -43,5 +43,3 @@ scheduler.add_job(
     args=[scheduler.app],
 )
 scheduler.start()
-
-app.run(debug=True, use_reloader=False)
