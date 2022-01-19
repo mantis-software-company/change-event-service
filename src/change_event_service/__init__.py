@@ -7,7 +7,7 @@ from pyctuator.pyctuator import Pyctuator
 from change_event_service.database import db
 from change_event_service.modules.job import consume_change_events
 from change_event_service.modules.job.utils import JobHealthProvider
-from change_event_service.modules.rest import change_event
+from change_event_service.modules.rest.views import change_event
 from change_event_service.utils.settings import apply_settings
 
 app = Flask(__name__)
