@@ -1,8 +1,8 @@
 from http import HTTPStatus
 
-from src.change_event_service.modules.rest.schemas import BaseResponseSchema
-from src.change_event_service.modules.rest.utils import ResponseObject
-from src.change_event_service.modules.rest.views import change_event
+from change_event_service.modules.rest.schemas import BaseResponseSchema
+from change_event_service.modules.rest.utils import ResponseObject
+from change_event_service.modules.rest.views import change_event
 
 
 @change_event.after_request

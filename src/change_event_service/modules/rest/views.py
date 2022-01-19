@@ -3,9 +3,9 @@ from http import HTTPStatus
 from flask.views import MethodView
 from flask_smorest import Blueprint
 
-from src.change_event_service.modules.rest.business import create_change_event, get_change_event, delete_change_event, \
+from change_event_service.modules.rest.business import create_change_event, get_change_event, delete_change_event, \
     filter_change_events
-from src.change_event_service.modules.rest.schemas import ChangeEventSchema, BaseResponseSchema, \
+from change_event_service.modules.rest.schemas import ChangeEventSchema, BaseResponseSchema, \
     ChangeEventFilterRequestSchema, ChangeEventResponseSchema, ChangeEventListResponseSchema
 
 change_event = Blueprint('change_event', 'change_event', url_prefix='/api/v1/change_event',

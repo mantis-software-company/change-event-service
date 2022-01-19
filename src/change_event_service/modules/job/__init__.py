@@ -1,7 +1,7 @@
 import json
 import pika as pika
-from src.change_event_service.database import db
-from src.change_event_service.modules.rest.models import ChangeEventModel
+from change_event_service.database import db
+from change_event_service.modules.rest.models import ChangeEventModel
 
 
 def consume_change_events(app_context):

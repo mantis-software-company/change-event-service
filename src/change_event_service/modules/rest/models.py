@@ -1,6 +1,6 @@
 import os
 
-from src.change_event_service.database import db
+from change_event_service.database import db
 from sqlalchemy_utils import ScalarListType
 
 

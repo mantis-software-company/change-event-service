@@ -2,9 +2,9 @@ from http import HTTPStatus
 
 from flask_smorest import abort
 
-from src.change_event_service.database import db
-from src.change_event_service.modules.rest.models import ChangeEventModel
-from src.change_event_service.modules.rest.utils import ResponseObject, PaginationObject
+from change_event_service.database import db
+from change_event_service.modules.rest.models import ChangeEventModel
+from change_event_service.modules.rest.utils import ResponseObject, PaginationObject
 from sqlalchemy import and_, or_
 
 
