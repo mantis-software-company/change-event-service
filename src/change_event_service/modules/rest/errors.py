@@ -1,8 +1,8 @@
 from http import HTTPStatus
 
-from modules.rest.schemas import BaseResponse
-from modules.rest.utils import ResponseObject
-from modules.rest.views import change_event
+from src.change_event_service.modules.rest.schemas import BaseResponseSchema
+from src.change_event_service.modules.rest.utils import ResponseObject
+from src.change_event_service.modules.rest.views import change_event
 
 
 @change_event.after_request
@@ -17,13 +17,13 @@ def wrap_error_request(response):
             kwargs["exceptionDetail"] = j["errors"]
 
         if "code" in j:
-            kwargs["status"] = j["code"]
+            kwargs["statusCode"] = j["code"]
 
         if response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY:
             kwargs["message"] = "Validation Error"
 
         _response = ResponseObject(**kwargs)
-        _schema = BaseResponse()
+        _schema = BaseResponseSchema()
         _response = _schema.dumps(_response)
         response.set_data(_response)
         return response
