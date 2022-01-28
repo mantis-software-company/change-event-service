@@ -37,9 +37,10 @@ api.register_blueprint(change_event)
 scheduler = APScheduler()
 
 scheduler.init_app(app)
+scheduler.start()
 scheduler.add_job(
     id='consume_change_events',
     func=consume_change_events,
     args=[scheduler.app],
 )
-scheduler.start()
+scheduler.run_job('consume_change_events')
