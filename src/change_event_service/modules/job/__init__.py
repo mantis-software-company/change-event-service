@@ -25,7 +25,10 @@ def consume_change_events(app_context):
             body = json.loads(body)
             _body = {}
             for field in body:
-                _body[camel_to_snake(field)] = body[field]
+                if field == tag:
+                    _body["tag"] = body["tag"].split(",")
+                else:
+                    _body[camel_to_snake(field)] = body[field]
             change_event = ChangeEventModel(**_body)
             db.session.add(change_event)
             db.session.commit()
