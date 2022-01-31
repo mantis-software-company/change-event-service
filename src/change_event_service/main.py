@@ -12,35 +12,35 @@ from change_event_service.utils.settings import apply_settings
 
 app = Flask(__name__)
 
-apply_settings(app)
 
-db.init_app(app)
-db.create_all(app=app)
+def init_app(app):
+    apply_settings(app)
+    db.init_app(app)
+    db.create_all(app=app)
 
-actuator = Pyctuator(
-    app,
-    app_name='change-event-service',
-    app_description='Change Event Service',
-    app_url=f"htttp://{app.config.get('ACTUATOR_BASE_URI').rstrip('actuator')}",
-    pyctuator_endpoint_url=f"{app.config.get('ACTUATOR_BASE_URI')}",
-    registration_url=None
-)
+    actuator = Pyctuator(
+        app,
+        app_name='change-event-service',
+        app_description='Change Event Service',
+        app_url=f"htttp://{app.config.get('ACTUATOR_BASE_URI').rstrip('actuator')}",
+        pyctuator_endpoint_url=f"{app.config.get('ACTUATOR_BASE_URI')}",
+        registration_url=None
+    )
 
-db_engine = db.get_engine(app)
-actuator.register_health_provider(DbHealthProvider(db_engine))
-actuator.register_health_provider(JobHealthProvider())
+    db_engine = db.get_engine(app)
+    actuator.register_health_provider(DbHealthProvider(db_engine))
+    actuator.register_health_provider(JobHealthProvider())
 
-api = Api(app)
-Api.DEFAULT_ERROR_RESPONSE_NAME = None
-api.register_blueprint(change_event)
+    api = Api(app)
+    Api.DEFAULT_ERROR_RESPONSE_NAME = None
+    api.register_blueprint(change_event)
 
-scheduler = APScheduler()
+    scheduler = APScheduler()
 
-scheduler.init_app(app)
-scheduler.start()
-scheduler.add_job(
-    id='consume_change_events',
-    func=consume_change_events,
-    args=[scheduler.app],
-)
-scheduler.run_job('consume_change_events')
+    scheduler.init_app(app)
+    scheduler.start()
+    scheduler.add_job(
+        id='consume_change_events',
+        func=consume_change_events,
+        args=[scheduler.app],
+    )

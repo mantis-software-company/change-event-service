@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="change-event-service",
-    version="2.0.10",
+    version="2.0.11",
     author="Ramazan Çetin",
     author_email="lramazancetinl@gmail.com",
     description="Change Event Service",
@@ -28,5 +28,6 @@ setuptools.setup(
                       'Flask-APScheduler==1.12.3','pika~=1.2.0', 'python-slugify~=5.0.2', 'requests~=2.27.1'],
     python_requires=">3.8.*, <4",
     packages=setuptools.find_packages(where="src"),
-    package_dir={"": "src"}
+    package_dir={"": "src"},
+    scripts=['bin/change-event-service']
 )
