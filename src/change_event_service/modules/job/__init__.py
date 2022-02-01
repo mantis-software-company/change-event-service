@@ -25,7 +25,7 @@ def consume_change_events(app_context):
             body = json.loads(body)
             _body = {}
             for field in body:
-                if field == tag:
+                if field == "tag":
                     _body["tag"] = body["tag"].split(",")
                 else:
                     _body[camel_to_snake(field)] = body[field]
