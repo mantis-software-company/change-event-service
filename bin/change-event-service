@@ -5,4 +5,4 @@ from change_event_service.main import app, init_app
 if __name__ == '__main__':
     print("app starting")
     init_app(app)
-    app.run(host=0.0.0.0)
+    app.run(host='0.0.0.0')
