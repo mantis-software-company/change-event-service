@@ -2,8 +2,10 @@ import json
 import pika as pika
 from change_event_service.database import db
 from change_event_service.modules.rest.models import ChangeEventModel
+from retry import retry
 
 
+@retry(pika.exceptions.AMQPConnectionError, delay=5, jitter=(1, 3))
 def consume_change_events(app_context):
     print('Job Started')
     app_context.app_context().push()
@@ -45,4 +47,7 @@ def consume_change_events(app_context):
     conn = pika.BlockingConnection(pika.ConnectionParameters(host=mq_host, virtual_host=mq_vhost, credentials=cred))
     channel = conn.channel()
     channel.basic_consume(mq_queue,  on_message, consumer_tag='change-event-service')
-    channel.start_consuming()
+    try:
+        channel.start_consuming()
+    except pika.exceptions.ConnectionClosedByBroker:
+        pass
