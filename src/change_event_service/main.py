@@ -44,4 +44,4 @@ def init_app(app):
         func=consume_change_events,
         args=[scheduler.app],
     )
-    scheduler.run_job('consume_change_events')
+#     scheduler.run_job('consume_change_events')
