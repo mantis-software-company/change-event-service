@@ -5,7 +5,7 @@ from flask_smorest import abort
 from change_event_service.database import db
 from change_event_service.modules.rest.models import ChangeEventModel
 from change_event_service.modules.rest.utils import ResponseObject, PaginationObject
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 
 
 def create_change_event(args):
@@ -60,9 +60,23 @@ def filter_change_events(args, pagination_params):
     filter_args = args.copy()
     event_time = filter_args.pop('event_time', None)
     tag = filter_args.pop('tag', None)
+    object_names = filter_args.pop('object_name', None)
+    event_types = filter_args.pop('event_type', None)
     change_events = []
     pagination_data = None
     q = ChangeEventModel.query
+    if event_types:
+        event_type_filter_list = []
+        for event_type in event_types:
+            event_type_filter_list.append(ChangeEventModel.event_type == event_type)
+        q = q.filter(or_(*event_type_filter_list))
+
+    if object_names:
+        object_name_filter_list = []
+        for object_name in object_names:
+            object_name_filter_list.append(ChangeEventModel.object_name == object_name)
+        q = q.filter(or_(*object_name_filter_list))
+
     if event_time:
         start_date = event_time[0]
         end_date = event_time[1]

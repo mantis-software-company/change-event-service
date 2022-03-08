@@ -42,6 +42,8 @@ class ChangeEventListResponseSchema(BaseResponseSchema):
 
 
 class ChangeEventFilterRequestSchema(ChangeEventSchema):
+    event_type = fields.List(fields.String(), validate=validate.Length(min=1))
+    object_name = fields.List(fields.String(), validate=validate.Length(min=1))
     event_time = fields.List(fields.DateTime(), validate=validate.Length(min=2, max=2))
 
 
