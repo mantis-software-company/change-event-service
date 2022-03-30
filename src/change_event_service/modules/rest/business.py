@@ -5,7 +5,7 @@ from flask_smorest import abort
 from change_event_service.database import db
 from change_event_service.modules.rest.models import ChangeEventModel
 from change_event_service.modules.rest.utils import ResponseObject, PaginationObject
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, text
 
 
 def create_change_event(args):
@@ -65,6 +65,11 @@ def filter_change_events(args, pagination_params):
     change_events = []
     pagination_data = None
     q = ChangeEventModel.query
+
+    if tag:
+        for _tag in tag:
+            q = q.filter(text(f"'{_tag.strip()}' = any(string_to_array(tbl_audit_log.tag, ', '))"))
+
     if event_types:
         event_type_filter_list = []
         for event_type in event_types:
@@ -81,11 +86,6 @@ def filter_change_events(args, pagination_params):
         start_date = event_time[0]
         end_date = event_time[1]
         q = q.filter(and_(ChangeEventModel.event_time >= start_date, ChangeEventModel.event_time <= end_date))
-    if tag:
-        tag_filter_list = []
-        for _tag in tag:
-            tag_filter_list.append(ChangeEventModel.tag.contains([_tag]))
-        q = q.filter(and_(*tag_filter_list))
 
     try:
         if filter_args:
