@@ -68,7 +68,7 @@ def filter_change_events(args, pagination_params):
 
     if tag:
         for _tag in tag:
-            q = q.filter(text(f"'{_tag.strip()}' = any(string_to_array(tbl_audit_log.tag, ', '))"))
+            q = q.filter(text(f"'{_tag.strip()}' = any(string_to_array(tbl_audit_log.tag, ','))"))
 
     if event_types:
         event_type_filter_list = []
