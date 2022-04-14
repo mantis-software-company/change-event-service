@@ -62,6 +62,7 @@ def filter_change_events(args, pagination_params):
     tag = filter_args.pop('tag', None)
     object_names = filter_args.pop('object_name', None)
     event_types = filter_args.pop('event_type', None)
+    ip = filter_args.pop('ip', None)
     change_events = []
     pagination_data = None
     q = ChangeEventModel.query
@@ -86,6 +87,9 @@ def filter_change_events(args, pagination_params):
         start_date = event_time[0]
         end_date = event_time[1]
         q = q.filter(and_(ChangeEventModel.event_time >= start_date, ChangeEventModel.event_time <= end_date))
+
+    if ip:
+        q = q.filter(ChangeEventModel.ip.like(f"%{ip}%"))
 
     try:
         if filter_args:
