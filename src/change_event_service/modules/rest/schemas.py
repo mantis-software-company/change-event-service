@@ -18,7 +18,6 @@ class ChangeEventSchema(Schema):
     new_value = fields.String()
     object_id = fields.String()
     old_value = fields.String()
-    user_name = fields.String()
     event_time = fields.DateTime()
     event_type = fields.String()
     field_name = fields.String()

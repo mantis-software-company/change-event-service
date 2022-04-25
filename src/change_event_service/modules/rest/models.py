@@ -12,7 +12,6 @@ class ChangeEventModel(db.Model):
     new_value = db.Column(db.String)
     object_id = db.Column(db.BigInteger)
     old_value = db.Column(db.String)
-    user_name = db.Column(db.String)
     event_time = db.Column(db.TIMESTAMP)
     event_type = db.Column(db.String)
     field_name = db.Column(db.String)
