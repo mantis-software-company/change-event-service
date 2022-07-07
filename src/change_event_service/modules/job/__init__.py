@@ -28,7 +28,7 @@ def consume_change_events(app_context):
             _body = {}
             for field in body:
                 if field == "tag":
-                    _body["tag"] = body["tag"].split(",")
+                    _body["tag"] = [tag.strip() for tag in body["tag"].split(",")]
                 else:
                     _body[camel_to_snake(field)] = body[field]
             change_event = ChangeEventModel(**_body)
