@@ -4,7 +4,7 @@ backports.zoneinfo==0.2.1
 certifi==2021.10.8
 charset-normalizer==2.0.10
 click==8.0.3
-Flask==2.0.2
+Flask==2.3.2
 Flask-APScheduler==1.12.3
 flask-smorest==0.36.0
 Flask-SQLAlchemy==2.5.1
