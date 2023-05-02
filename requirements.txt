@@ -30,4 +30,4 @@ tzdata==2021.5
 tzlocal==4.1
 urllib3==1.26.8
 webargs==8.1.0
-Werkzeug==2.0.2
+Werkzeug==2.2.3
