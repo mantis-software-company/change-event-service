@@ -1,4 +1,7 @@
 import json
+import logging
+import traceback
+
 import pika as pika
 from change_event_service.database import db
 from change_event_service.modules.rest.models import ChangeEventModel
@@ -35,7 +38,8 @@ def consume_change_events(app_context):
             db.session.add(change_event)
             db.session.commit()
         except Exception as e:
-            print(e)
+            stack_trace = traceback.format_exc()
+            logging.error(stack_trace)
             body = json.dumps(body).encode('utf-8')
             channel.basic_publish(exchange=mq_exchange, routing_key=mq_routing_key, body=body)
             db.get_app()

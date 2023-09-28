@@ -9,6 +9,7 @@ class ChangeEventModel(db.Model):
         """Override to avoid TypeError when passed spurious column names"""
         col_names = set([col.name for col in self.__table__.columns])
         superentries = {k: entries[k] for k in col_names.intersection(entries.keys())}
+        superentries["object_id"] = str(superentries["object_id"]) if type(superentries["object_id"]) == int else superentries["object_id"]
         super().__init__(**superentries)
 
     __tablename__ = os.environ.get('DB_TABLE_NAME')
@@ -16,7 +17,7 @@ class ChangeEventModel(db.Model):
     ip = db.Column(db.String)
     user_id = db.Column(db.String)
     new_value = db.Column(db.String)
-    object_id = db.Column(db.BigInteger)
+    object_id = db.Column(db.String)
     old_value = db.Column(db.String)
     event_time = db.Column(db.TIMESTAMP)
     event_type = db.Column(db.String)
