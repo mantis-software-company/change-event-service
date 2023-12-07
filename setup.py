@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="change-event-service",
-    version="2.0.25",
+    version="3.0.0",
     author="Ramazan Çetin",
     author_email="lramazancetinl@gmail.com",
     description="Change Event Service",
@@ -27,7 +27,6 @@ setuptools.setup(
                       'Flask-SQLAlchemy==2.5.1', 'SQLAlchemy-Utils~=0.38.2', 'psycopg2-binary~=2.9.3',
                       'retry~=0.9.2', 'Flask-APScheduler==1.12.3', 'pika~=1.2.0', 'python-slugify~=5.0.2',
                       'requests~=2.27.1'],
-    python_requires=">3.8.*, <4",
     packages=setuptools.find_packages(where="src"),
     package_dir={"": "src"},
     scripts=['bin/change-event-service']
