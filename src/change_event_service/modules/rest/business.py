@@ -68,20 +68,13 @@ def filter_change_events(args, pagination_params):
     q = ChangeEventModel.query
 
     if tag:
-        for _tag in tag:
-            q = q.filter(text(f"'{_tag.strip()}' = any(string_to_array(tbl_audit_log.tag, ','))"))
+        q = q.filter(ChangeEventModel.tag_tsv.match('&'.join(tag)))
 
     if event_types:
-        event_type_filter_list = []
-        for event_type in event_types:
-            event_type_filter_list.append(ChangeEventModel.event_type == event_type)
-        q = q.filter(or_(*event_type_filter_list))
+        q = q.filter(ChangeEventModel.event_type.in_(event_types))
 
     if object_names:
-        object_name_filter_list = []
-        for object_name in object_names:
-            object_name_filter_list.append(ChangeEventModel.object_name == object_name)
-        q = q.filter(or_(*object_name_filter_list))
+        q = q.filter(ChangeEventModel.object_name.in_(object_names))
 
     if event_time:
         start_date = event_time[0]
