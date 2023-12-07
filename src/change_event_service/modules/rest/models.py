@@ -1,5 +1,7 @@
 import os
 
+from sqlalchemy import FetchedValue
+
 from change_event_service.database import db
 from sqlalchemy_utils import ScalarListType, TSVectorType
 
@@ -24,4 +26,4 @@ class ChangeEventModel(db.Model):
     field_name = db.Column(db.String)
     object_name = db.Column(db.String)
     tag = db.Column(ScalarListType(str))
-    tag_tsv = db.Column(TSVectorType("tag"))
+    tag_tsv = db.Column(TSVectorType("tag"), FetchedValue())
