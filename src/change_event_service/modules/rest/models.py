@@ -27,3 +27,4 @@ class ChangeEventModel(db.Model):
     object_name = db.Column(db.String)
     tag = db.Column(ScalarListType(str))
     tag_tsv = db.Column(TSVectorType("tag"), FetchedValue())
+    description = db.Column(db.String)

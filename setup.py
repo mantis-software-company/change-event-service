@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="change-event-service",
-    version="3.0.2",
+    version="3.0.3",
     author="Ramazan Çetin",
     author_email="lramazancetinl@gmail.com",
     description="Change Event Service",
